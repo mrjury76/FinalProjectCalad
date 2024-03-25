@@ -1,6 +1,7 @@
 package com.example.project;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -28,6 +29,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //starts notification intent, if it's the preselected day to send them
+        if(NotificationReminder.isNotificationDay()) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                startForegroundService(new Intent(MainActivity.this, NotificationReminder.class));
+            }
+        }
 
         tabLayout = findViewById(R.id.tab1);
         viewPager2 = findViewById(R.id.viewpager2);
