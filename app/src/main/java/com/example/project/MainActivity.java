@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.addTab(secondTab);
 
         TabLayout.Tab thirdTab = tabLayout.newTab();
-        thirdTab.setText("CalendarFragment");
+        thirdTab.setText("Calendar");
         tabLayout.addTab(thirdTab);
 
         TabLayout.Tab fourthTab = tabLayout.newTab();

@@ -38,7 +38,7 @@ public class Login extends AppCompatActivity {
         password = findViewById(R.id.password);
         sAuth = FirebaseAuth.getInstance();
         sUser = sAuth.getCurrentUser();
-        loaddata();
+        loadData();
 
         link.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,7 +68,7 @@ public class Login extends AppCompatActivity {
         });
 
     }
-    public void loaddata() {
+    public void loadData() {
         sharedpreferences = getSharedPreferences(FILE_NAME, MODE_PRIVATE);
         if (sharedpreferences.contains(PASSWORD) && (sharedpreferences.contains(EMAIL))) {
             Intent intent = new Intent(Login.this, MainActivity.class);
