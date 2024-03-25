@@ -7,6 +7,7 @@
     tools:context=".List">
 
     <TextView
+        android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="List"
@@ -26,9 +27,13 @@
 
     <ExpandableListView
         android:id="@+id/expandableListViewSample"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="378dp"
+        android:layout_height="518dp"
+        android:layout_marginTop="71dp"
         android:divider="@color/orangeSolid"
-        android:dividerHeight="0.5dp" />
+        android:dividerHeight="0.5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
