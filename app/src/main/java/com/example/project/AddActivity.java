@@ -118,8 +118,8 @@ public class AddActivity extends AppCompatActivity {
                 }
 
                 dbHandler.addNewItem(ItemDate, ItemName, ItemAmount, ItemCalories, ItemProtein, ItemCarb, ItemFat);
-
-                Toast.makeText(AddActivity.this, "Item has been added. \nName: " + ItemName + "Date: " + ItemDate, Toast.LENGTH_SHORT).show();
+                String output = "Item has been added. \nItem: " + ItemName + ", Date: " + ItemDate;
+                Toast.makeText(AddActivity.this, output, Toast.LENGTH_SHORT).show();
                 amount.setText("");
                 date.setText("");
             }
