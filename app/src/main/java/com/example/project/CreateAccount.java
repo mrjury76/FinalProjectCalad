@@ -24,8 +24,8 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class CreateAccount extends AppCompatActivity {
 
-    TextView error, link;
     FirebaseAuth sAuth;
+    FirebaseUser sUser;
     FirebaseDatabase database;
     DatabaseReference myRef;
     FirebaseUser sUser;
@@ -48,7 +48,6 @@ public class CreateAccount extends AppCompatActivity {
         createAcc = findViewById(R.id.createA);
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference("username");
-
 
         name.addTextChangedListener(new TextWatcher() {
             @Override
@@ -100,12 +99,10 @@ public class CreateAccount extends AppCompatActivity {
                     if (passT.isEmpty()) {
                         throw new NoInputException("Input Require");
                     }
-                    else if (passT.contains(" "))
-                    {
+                    else if (passT.contains(" ")) {
                         throw new WhiteSpaceException("Whitespace");
                     }
-                    else if (passT.length() < 6)
-                    {
+                    else if (passT.length() < 6) {
                         throw new PassLengthException("Length");
                     }
                     else {
@@ -118,26 +115,21 @@ public class CreateAccount extends AppCompatActivity {
                             }
                         }
 
-                        if (passChecker != true)
-                        {
+                        if (passChecker != true) {
                             throw new SpecialCharacterException("Exception");
                         }
-                        else
-                        {
+                        else {
                             error.setText("");
                         }
                     }
+
                 } catch (NoInputException i) {
                     error.setText("Please enter in a password");
-                } catch (WhiteSpaceException w)
-                {
+                } catch (WhiteSpaceException w) {
                     error.setText("Whitespace within password");
-                }
-                catch (SpecialCharacterException ss)
-                {
+                } catch (SpecialCharacterException ss) {
                     error.setText("Need one special characters in password");
-                } catch (PassLengthException l)
-                {
+                } catch (PassLengthException l) {
                     error.setText("Password needs to be longer than 6 characters");
                 }
             }
@@ -162,26 +154,19 @@ public class CreateAccount extends AppCompatActivity {
                 try {
                     if (emailT.isEmpty()) {
                         throw new NoInputException("Input Require");
-                    }
-                    else if (emailT.contains(" "))
-                    {
+                    } else if (emailT.contains(" ")) {
                         throw new WhiteSpaceException("Whitespace");
-                    }
-                    else if (!emailT.matches(format))
-                    {
+                    } else if (!emailT.matches(format)) {
                         throw new EmailFormatException();
                     }
-                    else
-                    {
+                    else {
                         error.setText("");
                     }
                 } catch (NoInputException i) {
                     error.setText("Please enter an email");
-                } catch (WhiteSpaceException w)
-                {
+                } catch (WhiteSpaceException w) {
                     error.setText("Whitespace within email");
-                } catch (EmailFormatException e)
-                {
+                } catch (EmailFormatException e) {
                     error.setText("Please format into an email template");
                 }
             }
@@ -211,6 +196,7 @@ public class CreateAccount extends AppCompatActivity {
 //            }
 //        });
 
+        //create account button passes intent to the login activity
         createAcc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
