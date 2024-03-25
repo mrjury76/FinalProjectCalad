@@ -1,48 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Calorie">
 
     <TextView
+        android:id="@+id/calorieTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Calroie"
-        android:textSize="30sp"
+        android:layout_marginTop="64dp"
         android:background="@color/orangeSolid"
-        app:layout_constraintBottom_toTopOf="@+id/progressBar5"
+        android:text="@string/calorie"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.664" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ProgressBar
-        android:id="@+id/progressBar4"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="119dp"
-        android:layout_height="105dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginEnd="64dp"
-        android:layout_marginBottom="245dp"
-        android:background="@color/orangeSolid"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/progressBarProtein"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="200dp"
+        android:layout_height="28dp"
+        android:layout_marginTop="128dp"
+        android:progress="75"
+        android:progressTint="@color/red"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/progressBar5" />
+        app:layout_constraintHorizontal_bias="0.686"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/calorieTextView" />
 
     <ProgressBar
-        android:id="@+id/progressBar5"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="119dp"
-        android:layout_height="105dp"
-        android:layout_marginStart="69dp"
-        android:background="@color/orangeSolid"
-        android:layout_marginEnd="40dp"
-        android:layout_marginBottom="245dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/progressBar4"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:id="@+id/progressBarCarbs"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="200dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="47dp"
+        android:progress="75"
+        android:progressTint="@color/blue"
+        app:layout_constraintStart_toStartOf="@+id/progressBarProtein"
+        app:layout_constraintTop_toBottomOf="@+id/progressBarProtein" />
+
+    <ProgressBar
+        android:id="@+id/progressBarFat"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="200dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="52dp"
+        android:indeterminateBehavior="repeat"
+        android:maxWidth="75dip"
+        android:maxHeight="100dip"
+        android:minWidth="60dip"
+        android:minHeight="100dip"
+        android:progress="75"
+        android:progressTint="@color/green"
+        app:layout_constraintStart_toStartOf="@+id/progressBarCarbs"
+        app:layout_constraintTop_toBottomOf="@+id/progressBarCarbs" />
+
+    <TextView
+        android:id="@+id/proteinView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="24dp"
+        android:text="@string/protein"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toStartOf="@+id/progressBarProtein"
+        app:layout_constraintTop_toTopOf="@+id/progressBarProtein" />
+
+    <TextView
+        android:id="@+id/carbView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/carbs"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="@+id/proteinView"
+        app:layout_constraintStart_toStartOf="@+id/proteinView"
+        app:layout_constraintTop_toTopOf="@+id/progressBarCarbs" />
+
+    <TextView
+        android:id="@+id/fatView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/fat"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="@+id/carbView"
+        app:layout_constraintStart_toStartOf="@+id/carbView"
+        app:layout_constraintTop_toTopOf="@+id/progressBarFat" />
+
+    <TextView
+        android:id="@+id/totalCalorieTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="53dp"
+        android:text="@string/total_calories"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/progressBarFat" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

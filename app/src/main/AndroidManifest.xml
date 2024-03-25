@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
         android:maxSdkVersion="32" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         android:maxSdkVersion="32"
         tools:ignore="ScopedStorage" />
@@ -48,6 +49,10 @@
             android:name=".CreateAccount"
             android:exported="true">
         </activity>
+        <service
+            android:name=".NotificationReminder"
+            android:exported="true">
+        </service>
     </application>
 
 </manifest>
