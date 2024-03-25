@@ -214,13 +214,7 @@ public class CreateAccount extends AppCompatActivity {
         createAcc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
-
                 sAuth.createUserWithEmailAndPassword(emailT, passT);
-
-
-
                 Intent intent = new Intent(CreateAccount.this, Login.class);
                 startActivity(intent);
             }
