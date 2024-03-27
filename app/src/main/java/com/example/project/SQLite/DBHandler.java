@@ -7,6 +7,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import com.example.project.Add_Modal;
 import com.example.project.ReadModal;
+import android.util.Log;
+
+import com.example.project.MainPkg.ReadModal;
 
 import java.util.ArrayList;
 
@@ -32,6 +35,9 @@ public class DBHandler extends SQLiteOpenHelper {
 
     // below variable id for our course duration column.
     private static final String AMOUNT_COL = "amount";
+    // below variable for our course description column.
+
+
 
     // below variable for our course description column.
 
@@ -39,6 +45,7 @@ public class DBHandler extends SQLiteOpenHelper {
     private static final String PROTEIN_COL = "proteins";
     private static final String CARB_COL = "carbs";
     private static final String FAT_COL = "fats";
+    private static final String ITEM_ID_COL = "item";
 
     // creating a constructor for our database handler.
     public DBHandler(Context context) {
@@ -60,15 +67,17 @@ public class DBHandler extends SQLiteOpenHelper {
                 + CALORIES_COL + " TEXT,"
                 + PROTEIN_COL + " TEXT,"
                 + CARB_COL + " TEXT,"
-                + FAT_COL + " TEXT)";
+                + FAT_COL + " TEXT,"
+                + ITEM_ID_COL + " TEXT)";
 
         // at last we are calling a exec sql
         // method to execute above sql query
         db.execSQL(query);
     }
 
+//    public String getID()
     // this method is use to add new course to our sqlite database.
-    public void addNewItem(String itemDate, String itemName, String itemAmount, String itemCalories, String itemProtein, String itemCarb, String itemFat ) {
+    public void addNewItem(String itemDate, String itemName, String itemAmount, String itemCalories, String itemProtein, String itemCarb, String itemFat, String itemId ) {
 
         // on below line we are creating a variable for
         // our sqlite database and calling writable method
@@ -88,6 +97,7 @@ public class DBHandler extends SQLiteOpenHelper {
         values.put(PROTEIN_COL, itemProtein);
         values.put(CARB_COL, itemCarb);
         values.put(FAT_COL, itemFat);
+        values.put(ITEM_ID_COL, itemId);
 
         // after adding all values we are passing
         // content values to our table.
@@ -124,6 +134,10 @@ public class DBHandler extends SQLiteOpenHelper {
                     cursorItems.getString(4),
                     cursorItems.getString(5),
                     cursorItems.getString(6),
+                    cursorItems.getString(7),
+                    cursorItems.getString(8)));
+            Log.w("ListUpdate##########", "Processed");
+
                     cursorItems.getString(7)));
         }
         // at last closing our cursor
@@ -132,6 +146,55 @@ public class DBHandler extends SQLiteOpenHelper {
         return courseModalArrayList;
     }
 
+
+
+    public ArrayList<ReadModal> readLast(int num) {
+        // Step 1: on below line we are opening the
+        // database for reading our database.
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        //  Step2: A Cursor in Android is an interface for accessing and retrieving data
+        //  from a database query result. In this case, it will be used to store the result of the SQL query.
+        //Cursor cursorCourses = db.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE " + NAME_COL + "=?", new String[]{courseName});
+        Cursor cursorItems = db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
+        //The second parameter is an array of strings that can be
+        // used to replace placeholders in the SQL query with actual values
+
+        // on below line we are creating a new array list.
+        ArrayList<ReadModal> courseModalArrayList = new ArrayList<>();
+        int count = cursorItems.getCount();
+        cursorItems.moveToPosition(count-(num+1));
+        while(cursorItems.moveToNext()) {
+            // on below line we are adding the data from cursor to our array list.
+            courseModalArrayList.add(new ReadModal(cursorItems.getString(1),
+                    cursorItems.getString(2),
+                    cursorItems.getString(3),
+                    cursorItems.getString(4),
+                    cursorItems.getString(5),
+                    cursorItems.getString(6),
+                    cursorItems.getString(7),
+                    cursorItems.getString(8)));
+            Log.w("ListUpdate##########", "Processed");
+        }
+        //}
+        // at last closing our cursor
+        // and returning our array list.
+        cursorItems.close();
+        return courseModalArrayList;
+    }
+
+    public void deleteCourse(String itemId) {
+
+        // on below line we are creating
+        // a variable to write our database.
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        // on below line we are calling a method to delete our
+        // course and we are comparing it with our course name.
+//        db.delete(TABLE_NAME, ITEM_ID_COL, new String[]{itemId});
+        db.delete(TABLE_NAME, "item=?", new String[]{itemId});
+        db.close();
+    }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
